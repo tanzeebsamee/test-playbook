@@ -1,0 +1,104 @@
+---
+
+ - hosts: st 
+   gather_facts: True
+   tasks: 
+   - name: Removing earlier DNS "10.66.11.111" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^10.66.11.111"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+   - name: Removing earlier DNS "nameserver 10.66.11.111" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^nameserver 10.66.11.111"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+    
+
+   - name: Removing earlier DNS "10.32.21.111" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^10.32.21.111"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+    
+   - name: Removing earlier DNS "nameserver 10.32.21.111" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^nameserver 10.32.21.111"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+    
+
+   - name: Removing earlier DNS "10.32.21.112" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^10.32.21.112"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+    
+   - name: Removing earlier DNS "nameserver 10.32.21.112" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^nameserver 10.32.21.112"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+   - name: Removing earlier DNS "10.32.22.19" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^10.32.22.19"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+    
+   - name: Removing earlier DNS "nameserver 10.32.22.19" from /etc/resolv.conf at Redhat , SUSE and CentOS Distribution
+     lineinfile:
+       dest: /etc/resolv.conf
+       state: absent
+       regexp: "^nameserver 10.32.22.19"
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+   - name: Removing earlier DNS from /etc/resolv.conf at Solaris
+     shell : rm /etc/resolv.conf ; touch /etc/resolv.conf ; echo "nameserver 10.96.75.10 nameserver 10.96.75.11 nameserver 10.96.75.12 nameserver 10.32.75.10" >> /etc/resolv.conf
+     when : 
+       ansible_os_family == 'Solaris'  
+
+   - name: Insert newest DNS 10.96.75.10, 10.96.75.11, 10.96.75.12, 10.32.75.10 to /etc/resolv.conf
+     blockinfile:
+       path: /etc/resolv.conf
+       state: present
+       block: |
+         nameserver 10.96.75.10 
+         nameserver 10.96.75.11 
+         nameserver 10.96.75.12
+         nameserver 10.32.75.10
+     when:
+       ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat' or ansible_distribution == 'SUSE'
+
+       
+   
+    
+
+      
+
+
+
+     
+     
+   
